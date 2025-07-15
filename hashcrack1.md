@@ -1,85 +1,82 @@
-````markdown
-# 🔐 picoCTF - Cracking Hash Challenge
+content: |
+  # 🔐 picoCTF - Cracking Hash Challenge
 
----
+  ---
 
-## 🕵️‍♂️ Desafio
+  ## 🕵️‍♂️ Desafio
 
-Um servidor armazenou uma mensagem secreta, mas o administrador usou senhas com hashes fracas.  
-Seu objetivo? Quebrar essas hashes para descobrir as senhas e, no final, a flag secreta! 🚀
+  Um servidor armazenou uma mensagem secreta, mas o administrador usou senhas com hashes fracas.  
+  Seu objetivo? Quebrar essas hashes para descobrir as senhas e, no final, a flag secreta! 🚀
 
----
+  ---
 
-## 🧩 Hashes apresentadas
+  ## 🧩 Hashes apresentadas
 
-| Hash                                                                 | Tipo    |
-|----------------------------------------------------------------------|---------|
-| `482c811da5d5b4bc6d497ffa98491e38`                                  | MD5     |
-| `b7a875fc1ea228b9061041b7cec4bd3c52ab3ce3`                         | SHA1    |
-| `916e8c4f79b25028c9e467f1eb8eee6d6bbdff965f9928310ad30a8d88697745` | SHA256  |
+  | Hash                                                                 | Tipo    |
+  |----------------------------------------------------------------------|---------|
+  | `482c811da5d5b4bc6d497ffa98491e38`                                  | MD5     |
+  | `b7a875fc1ea228b9061041b7cec4bd3c52ab3ce3`                         | SHA1    |
+  | `916e8c4f79b25028c9e467f1eb8eee6d6bbdff965f9928310ad30a8d88697745` | SHA256  |
 
----
+  ---
 
-## 🛠️ Ferramentas utilizadas
+  ## 🛠️ Ferramentas utilizadas
 
-- **John the Ripper** – o clássico quebra-hash  
-- **Wordlist rockyou.txt** – disponível no Kali Linux em `/usr/share/wordlists/rockyou.txt`
+  - **John the Ripper** – o clássico quebra-hash  
+  - **Wordlist rockyou.txt** – disponível no Kali Linux em `/usr/share/wordlists/rockyou.txt`
 
----
+  ---
 
-## 📚 Passo a passo para quebrar as hashes
+  ## 📚 Passo a passo para quebrar as hashes
 
-1. **Criar arquivo com a hash:**
-
-    ```bash
-    echo "HASH_A_QUEBRAR" > hash.txt
-    ```
-
-2. **Rodar John the Ripper com o formato correto:**
-
-    - Para MD5:
+  1. **Criar arquivo com a hash:**
 
       ```bash
-      john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+      echo "HASH_A_QUEBRAR" > hash.txt
       ```
 
-    - Para SHA1:
+  2. **Rodar John the Ripper com o formato correto:**
+
+      - Para MD5:
+
+        ```bash
+        john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+        ```
+
+      - Para SHA1:
+
+        ```bash
+        john --format=raw-sha1 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+        ```
+
+      - Para SHA256:
+
+        ```bash
+        john --format=raw-sha256 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+        ```
+
+  3. **Verificar as senhas descobertas:**
 
       ```bash
-      john --format=raw-sha1 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+      john --show hash.txt
       ```
 
-    - Para SHA256:
+  ---
 
-      ```bash
-      john --format=raw-sha256 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
-      ```
+  ## 🎉 Resultados obtidos
 
-3. **Verificar as senhas descobertas:**
+  | Hash                                                                   | Tipo   | Senha encontrada      |
+  |------------------------------------------------------------------------|--------|----------------------|
+  | `482c811da5d5b4bc6d497ffa98491e38`                                   | MD5    | password123          |
+  | `b7a875fc1ea228b9061041b7cec4bd3c52ab3ce3`                          | SHA1   | [senha descoberta]    |
+  | `916e8c4f79b25028c9e467f1eb8eee6d6bbdff965f9928310ad30a8d88697745`  | SHA256 | [senha descoberta]    |
 
-    ```bash
-    john --show hash.txt
-    ```
+  ---
 
----
+  ## 🏁 Flag final
 
-## 🎉 Resultados obtidos
+### picoCTF{UseStr0nG_h@shEs_&PaSswDs!_29028be8}
 
-| Hash                                                                   | Tipo   | Senha encontrada      |
-|------------------------------------------------------------------------|--------|----------------------|
-| `482c811da5d5b4bc6d497ffa98491e38`                                   | MD5    | password123          |
-| `b7a875fc1ea228b9061041b7cec4bd3c52ab3ce3`                          | SHA1   | [senha descoberta]    |
-| `916e8c4f79b25028c9e467f1eb8eee6d6bbdff965f9928310ad30a8d88697745`  | SHA256 | [senha descoberta]    |
-
----
-
-## 🏁 Flag final
-
-````
-
-picoCTF{UseStr0nG\_h\@shEs\_\&PaSswDs!\_29028be8}
-
-```
 
 ---
 
@@ -88,11 +85,3 @@ picoCTF{UseStr0nG\_h\@shEs\_\&PaSswDs!\_29028be8}
 - Senhas fracas e hashes fracas = 💥 desastre na segurança!  
 - Sempre use senhas fortes e algoritmos de hash robustos!  
 - Wordlists são poderosas aliadas para quebrar essas proteções — invista tempo em boas listas!
-
----
-
-✍️ Quer que eu te ajude a montar scripts para automatizar esse processo?  
-Ou prefere que eu te explique outras técnicas de cripto?  
-
-Bora! 🚀
-```
